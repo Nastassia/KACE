@@ -2,7 +2,7 @@ import matplotlib
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import numpy as np
-import pylab as pl
+from pylab import *
 import sys
 
 filename = sys.argv[-1]
@@ -19,10 +19,7 @@ for x in tickets:
 
 y = []
 x = []
-N = 6
-#err = [2, 6, 1, 7, 8, 4]
-
-ind = np.arange(N)
+ind = arange(len(x))
 width = 0.35
 
 for values in ticketsByOwner:
@@ -30,10 +27,13 @@ for values in ticketsByOwner:
 	y.append(l[0])
 	x.append(l[-2])
 
-fig = pl.figure()
-ax = fig.add_subplot(1,1,1)
+#fig = pl.figure()
+ax = subplot(1,1,1)
 
-rect = ax.bar(ind, y, width)
+yy = map(float, y)
+#rect = ax.bar(ind, y)
+bar(ind, yy)
+xticks(ind + width, (x))
 
 ax.set_ylabel('Completed Tickets')
 ax.set_title('Completed Tickets by Owner')
