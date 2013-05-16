@@ -20,7 +20,7 @@ for x in tickets:
 y = []
 x = []
 ind = range(len(x))
-width = 0.35
+width = 0.8
 
 for values in ticketsByOwner:
 	l = values.split()
@@ -32,8 +32,9 @@ ax = subplot(1,1,1)
 
 yy = map(float, y)
 #rect = ax.bar(ind, y)
-ax.bar(range(len(x)), yy)
+ax.bar(range(len(x)), yy, width, align='center', color='#159CD1')
 ax.set_xticklabels(x)
+ax.set_xticks(range(len(x)))
 #xticks(range(len(x))+ width)
 
 ax.set_ylabel('Completed # of Tickets')
