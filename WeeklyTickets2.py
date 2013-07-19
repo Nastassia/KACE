@@ -1,9 +1,12 @@
 import matplotlib
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import numpy as np
 from pylab import *
 import sys
+import time
+from datetime import date
 
 filename = sys.argv[-1]
 
@@ -21,6 +24,7 @@ y = []
 x = []
 ind = range(len(x))
 width = 0.8
+today = datetime.datetime.now()
 
 for values in ticketsByOwner:
 	l = values.split()
@@ -28,7 +32,8 @@ for values in ticketsByOwner:
 	x.append(l[-2])
 
 #fig = pl.figure()
-ax = subplot(1,1,1)
+fig = Figure(figsize=[4,4])
+ax = fig.add_subplot(1,1,1)
 
 yy = map(float, y)
 #rect = ax.bar(ind, y)
@@ -40,6 +45,9 @@ ax.set_xticks(range(len(x)))
 ax.set_ylabel('Completed # of Tickets')
 ax.set_title('Completed Tickets by Owner')
 
+canvas = FigureCanvas(fig)                                
+canvas.print_figure(today.strftime("%Y-%m-%d"))
+
 # ax.bar(x,y)
 
-plt.show()
+#plt.show()
